@@ -17,10 +17,10 @@ const getAllTalkers = async () => {
     return data;
 };
 
-const getTalkerById = async () => {
+const getTalkerById = async (id) => {
     const data = await readTalkerFile();
     return data
-    .find((talker) => talker.id);
+    .find((talker) => talker.id === id);
 };
 
 module.exports = {
