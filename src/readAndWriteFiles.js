@@ -14,7 +14,7 @@ const readTalkerFile = async () => {
 
 const getAllTalkers = async () => {
     const data = await readTalkerFile();
-    return data.talkers;
+    return data;
 };
 
 module.exports = {
