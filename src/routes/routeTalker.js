@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllTalkers } = require('../utils/readAndWriteFiles');
+const { getAllTalkers, getTalkerById } = require('../utils/readAndWriteFiles');
 
 const routeTalker = express.Router();
 
@@ -8,4 +8,13 @@ routeTalker.get('/talker', async (request, response) => {
      return response.status(200).json(talker);
   });
 
-  module.exports = routeTalker;
+routeTalker.get('/talker/:id', async (request, response) => {
+    const { id } = request.params;
+    const talker = await getTalkerById(Number(id));
+    if (!talker) {
+        return response.status(404).json({ message: 'Pessoa palestrante não encontrada' }); 
+    }
+     response.status(200).json(talker);
+    });
+
+module.exports = routeTalker;
