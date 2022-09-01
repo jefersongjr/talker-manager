@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const { join } = require('path');
 
-const path = './talker.json';
+const path = '../talker.json';
 
 const readTalkerFile = async () => {
     try {
@@ -26,4 +26,5 @@ const getTalkerById = async (id) => {
 module.exports = {
     getTalkerById,
     getAllTalkers,
+    readTalkerFile,
 };
