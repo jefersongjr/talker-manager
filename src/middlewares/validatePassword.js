@@ -5,7 +5,7 @@ const validatePassword = (req, res, next) => {
 
     if (!password) return res.status(400).json(PassEmpty);
 
-    if (password > 5) return res.status(400).json(PassWrongPattern);
+    if (password.length <= 6) return res.status(400).json(PassWrongPattern);
 
     next();
 };
