@@ -3,7 +3,9 @@ const validateAge = require('../middlewares/validateAge');
 const validateName = require('../middlewares/validateName');
 const { validateTalkWatchedAt, validateTalkRate } = require('../middlewares/validateTalk');
 const validateToken = require('../middlewares/validateToken');
-const { getAllTalkers, getTalkerById, postTalker } = require('../utils/readAndWriteFiles');
+const { readTalkerFile,
+        getAllTalkers, getTalkerById, updateTalker,
+         postTalker } = require('../utils/readAndWriteFiles');
 
 const routeTalker = express.Router();
 
@@ -26,13 +28,29 @@ routeTalker.post('/talker',
   validateName,
   validateAge,
   validateTalkWatchedAt,
+  validateTalkRate, async (request, response) => {
+    const { name, age, talk } = request.body;
+
+    const lastId = await readTalkerFile();
+    const id = lastId.length + 1;
+
+    await postTalker(JSON.stringify({ name, age, id, talk }));
+
+    response.status(201).json({ name, age, id, talk });
+    }); 
+
+  routeTalker.put('/talker/:id',
+  validateToken,
+  validateName,
+  validateAge,
+  validateTalkWatchedAt,
   validateTalkRate,
-  async (request, response) => {
-    const talker = request.body;
+   async (request, response) => {
+    const changedTalker = request.body;
+    const { id } = request.params;
 
-   const inserted = await postTalker({ id: 5, ...talker });
-   console.log('inserted', inserted);
+    const changeTalker = await updateTalker(changedTalker, Number(id));
+    return response.status(200).json(changeTalker);
+ }); 
 
-    return response.status(201).json(talker);
-   }); 
-module.exports = routeTalker;
+module.exports = routeTalker;  
