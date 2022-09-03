@@ -23,8 +23,24 @@ const getTalkerById = async (id) => {
     .find((talker) => talker.id === id);
 };
 
+const postTalker = async (talk) => {
+    try {
+         const data = await readTalkerFile();
+   //     talk = { id: data.nexttalkId, ...talk };
+
+       data.push(talk);
+       data.nextPostId += 1;
+
+       const content = await fs.writeFile(path, JSON.stringify(data));
+       return content;
+    } catch (error) {
+      return null;
+}
+};
+
 module.exports = {
     getTalkerById,
     getAllTalkers,
     readTalkerFile,
+    postTalker,
 };
