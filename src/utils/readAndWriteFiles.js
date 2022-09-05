@@ -31,9 +31,11 @@ const getLastId = async () => {
 const postTalker = async (talk) => {
     try {
         const talkers = await readTalkerFile();
-
-    talkers.push(JSON.parse(talk));
-    const content = await fs.writeFile(path, JSON.stringify(talkers));
+        console.log(talk);
+    talkers.push(talk);
+    console.log(talkers);
+    const content = await fs.writeFile(join(__dirname, path), JSON.stringify(talkers));
+    console.log(content);
     return content;
     } catch (error) {
         console.log(error.message);

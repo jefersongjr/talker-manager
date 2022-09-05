@@ -34,9 +34,9 @@ routeTalker.post('/talker',
     const lastId = await readTalkerFile();
     const id = lastId.length + 1;
 
-    await postTalker(JSON.stringify({ name, age, id, talk }));
+    await postTalker({ name, age, id, talk });
 
-    response.status(201).json({ name, age, id, talk });
+    response.status(201).json({ id, name, age, talk });
     }); 
 
   routeTalker.put('/talker/:id',
