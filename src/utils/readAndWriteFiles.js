@@ -33,9 +33,7 @@ const postTalker = async (talk) => {
         const talkers = await readTalkerFile();
         console.log(talk);
     talkers.push(talk);
-    console.log(talkers);
     const content = await fs.writeFile(join(__dirname, path), JSON.stringify(talkers));
-    console.log(content);
     return content;
     } catch (error) {
         console.log(error.message);
@@ -47,20 +45,34 @@ const updateTalker = async (id, update) => {
    try {
     const talkers = await readTalkerFile();
     let changedTalker;
-    for (let i = 0; i < talkers.posts.length; i += 1) {
+    for (let i = 0; i < talkers.length; i += 1) {
       if (talkers[i].id === Number(id)) {
         talkers[i].name = update.name;
         talkers[i].age = update.age;
         talkers[i].talk.watchedAt = update.talk.watchedAt;
         talkers[i].talk.rate = update.talk.rate;
         changedTalker = talkers[i];
+        console.log(changedTalker);
       }
     }
-    await fs.writeFile(path, JSON.stringify(talkers));
+    await fs.writeFile(join(__dirname, path), JSON.stringify(talkers));
     return changedTalker;
   } catch (error) {
     return null;
   } 
+};
+
+const removeTalker = async (id) => {
+    try {
+      const talkers = await readTalkerFile();
+      const deletedTalker = talkers.filter((talker) => talker.id !== Number(id));
+      const content = await fs.writeFile(join(__dirname, path), JSON.stringify(deletedTalker));
+      console.log(content);
+    return content;
+    } catch (error) {
+        console.log(error.message);
+        return null;
+    }
 };
 
 module.exports = {
@@ -70,4 +82,5 @@ module.exports = {
     getLastId,
     postTalker,
     updateTalker,
+    removeTalker,
 };

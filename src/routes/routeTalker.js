@@ -5,7 +5,7 @@ const { validateTalkWatchedAt, validateTalkRate } = require('../middlewares/vali
 const validateToken = require('../middlewares/validateToken');
 const { readTalkerFile,
         getAllTalkers, getTalkerById, updateTalker,
-         postTalker } = require('../utils/readAndWriteFiles');
+         postTalker, removeTalker } = require('../utils/readAndWriteFiles');
 
 const routeTalker = express.Router();
 
@@ -51,6 +51,17 @@ routeTalker.post('/talker',
 
     const changeTalker = await updateTalker(changedTalker, Number(id));
     return response.status(200).json(changeTalker);
- }); 
+ });
+
+ routeTalker.delete('/talker/:id', validateToken, async (req, res) => {
+    try {
+     const { id } = req.params;
+     const x = removeTalker(id);
+     
+     res.status(204).json(x);
+ } catch (error) {
+  console.log(error.message);
+ }
+});
 
 module.exports = routeTalker;  
