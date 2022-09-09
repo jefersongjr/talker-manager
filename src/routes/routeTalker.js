@@ -5,9 +5,20 @@ const { validateTalkWatchedAt, validateTalkRate } = require('../middlewares/vali
 const validateToken = require('../middlewares/validateToken');
 const { readTalkerFile,
         getAllTalkers, getTalkerById, updateTalker,
-         postTalker, removeTalker } = require('../utils/readAndWriteFiles');
+         postTalker, removeTalker, findTalkerByName } = require('../utils/readAndWriteFiles');
 
 const routeTalker = express.Router();
+
+routeTalker.get('/talker/search', validateToken, async (request, response) => {
+  const { q } = request.query;
+  const AllTalkers = await readTalkerFile();
+  const filteredTalk = await findTalkerByName(q);
+
+  if (!q) {
+    return response.status(200).json(AllTalkers);
+  }
+  return response.status(200).json(filteredTalk);
+});
 
 routeTalker.get('/talker', async (request, response) => {
     const talker = await getAllTalkers();

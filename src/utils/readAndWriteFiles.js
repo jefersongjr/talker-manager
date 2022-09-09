@@ -18,14 +18,14 @@ const getAllTalkers = async () => {
 };
 
 const getTalkerById = async (id) => {
-    const data = await readTalkerFile();
-    return data
+    const talkers = await readTalkerFile();
+    return talkers
     .find((talker) => talker.id === id);
 };
 
 const getLastId = async () => {
-    const data = await readTalkerFile();
-    return data.length;   
+    const talkers = await readTalkerFile();
+    return talkers.length;   
 };
 
 const postTalker = async (talk) => {
@@ -75,6 +75,11 @@ const removeTalker = async (id) => {
     }
 };
 
+const findTalkerByName = async (query) => {
+    const talkers = await readTalkerFile();
+    return talkers.filter((talker) => talker.name.includes(query));
+  };
+
 module.exports = {
     getTalkerById,
     getAllTalkers,
@@ -83,4 +88,5 @@ module.exports = {
     postTalker,
     updateTalker,
     removeTalker,
+    findTalkerByName,
 };
