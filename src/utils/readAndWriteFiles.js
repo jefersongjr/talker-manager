@@ -44,19 +44,16 @@ const postTalker = async (talk) => {
 const updateTalker = async (id, update) => {
    try {
     const talkers = await readTalkerFile();
-    let changedTalker;
     for (let i = 0; i < talkers.length; i += 1) {
-      if (talkers[i].id === Number(id)) {
-        talkers[i].name = update.name;
-        talkers[i].age = update.age;
-        talkers[i].talk.watchedAt = update.talk.watchedAt;
-        talkers[i].talk.rate = update.talk.rate;
-        changedTalker = talkers[i];
-        console.log(changedTalker);
-      }
+        if (talkers[i].id === Number(id)) {
+            talkers[i].name = update.name;
+            talkers[i].age = update.age;
+            talkers[i].talk.watchedAt = update.talk.watchedAt;
+            talkers[i].talk.rate = update.talk.rate;
+        }
     }
     await fs.writeFile(join(__dirname, path), JSON.stringify(talkers));
-    return changedTalker;
+    return { ...update, id: Number(id) };
   } catch (error) {
     return null;
   } 

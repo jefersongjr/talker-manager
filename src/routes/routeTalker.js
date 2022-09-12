@@ -60,7 +60,7 @@ routeTalker.post('/talker',
     const changedTalker = request.body;
     const { id } = request.params;
 
-    const changeTalker = await updateTalker(changedTalker, Number(id));
+    const changeTalker = await updateTalker(Number(id), changedTalker);
     return response.status(200).json(changeTalker);
  });
 
