@@ -19,7 +19,7 @@ const validateTalkRate = (req, res, next) => {
     if (talk.rate < 1 || talk.rate > 5) return res.status(400).json(rateLength);
     if (!talk.rate) return res.status(400).json(rateNull);
 
-    next();
+    next(); 
 };
 
 module.exports = {
