@@ -1,10 +1,19 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Talker Manager :microphone: :woman:
+
+##  🚀📋 Sobre:
+
+**Test With RTL :microphone: ** foi o projeto desenvolvido em grupo por ,[Jeferson Gomes](https://www.linkedin.com/in/jefersongjr/),
+durante o curso de formação de desenvolvimento Full Stack da [Trybe](https://www.betrybe.com/), durante o módulo de Front End. <br>
+No qual construi uma aplicação de cadastro de talkers (palestrantes) em que será possível cadastrar, visualizar, pesquisar, editar e excluir informações.
+
+## 🛠️ Construído com: 
+
+ * Node.js
+ * Express.js
+ * Docker
+
+## :computer: Skills Desenvolvidas:
+
+  * Desenvolver uma API de um CRUD (Create, Read, Update e Delete) de palestrantes (talkers).
+  * Desenvolver alguns endpoints que irão ler e escrever em um arquivo utilizando o módulo fs.
+
