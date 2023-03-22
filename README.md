@@ -16,4 +16,4 @@ No qual construi uma API de cadastro de talkers (palestrantes) em que será poss
 
   * Desenvolver uma API de um CRUD (Create, Read, Update e Delete) de palestrantes (talkers).
   * Desenvolver alguns endpoints que irão ler e escrever em um arquivo utilizando o módulo fs.
-
+   
